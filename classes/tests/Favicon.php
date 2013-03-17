@@ -1,13 +1,12 @@
-<?php 
+<?php
 
-class Favicon extends AcceptanceTest {
-
-	public function test($domain) {
-		if (isset($domain) && $domain) {
-			return $this->remoteFileExists($domain.'/favicon.ico');
-		}
-	}
-	
+class Favicon extends FileExistsTest {
+	public $route = 'favicon/';
+	public $file = 'favicon.ico';
+	public $name = 'favicon.ico';
+	public $description = 'Checks if the favicon.ico file exists';
+	public $successMessage = 'OK: File exists';
+	public $errorMessage = 'FAILED: File not found';
 }
 
 ?>

@@ -1,13 +1,12 @@
-<?php 
+<?php
 
-class RobotsTxt extends AcceptanceTest {
-
-	public function test($domain) {
-		if (isset($domain) && $domain) {
-			return $this->remoteFileExists($domain.'/robots.txt');
-		}
-	}
-	
+class RobotsTxt extends FileExistsTest {
+	public $route = 'robots/';
+	public $file = 'robots.txt';
+	public $name = 'robots.txt';
+	public $description = 'Checks if the robots.txt file exists';
+	public $successMessage = 'OK: File exists';
+	public $errorMessage = 'FAILED: File not found';
 }
 
 ?>
