@@ -1,6 +1,6 @@
 <?php
 
-class FileExistsTest extends AcceptanceTest {
+abstract class FileExistsTest extends AcceptanceTest {
 	public $file;
 
 	public function test() {
@@ -18,10 +18,10 @@ class FileExistsTest extends AcceptanceTest {
 			//if request did not fail
 			if ($result !== false) {
 				//if request was ok, check response code
-				$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+				$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 				if ($statusCode == 200) {
-					$ret = true;   
+					$ret = true;
 				}
 			}
 
