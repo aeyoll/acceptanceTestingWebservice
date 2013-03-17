@@ -1,6 +1,6 @@
 <?php
 
-class RobotsTxt extends FileExistsTest {
+class Robots extends FileExistsTest {
 	public $route = 'robots/';
 	public $file = 'robots.txt';
 	public $name = 'robots.txt';
