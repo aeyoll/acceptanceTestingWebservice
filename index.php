@@ -51,22 +51,22 @@ foreach ($tests as $test_file) {
 	foreach ($classes as $class) {
 		$acceptance_test = new $class();
 		$tests_objects[] = $acceptance_test;
-		$f3->set('acceptance_test', $acceptance_test);
-		$f3->route('GET /'.$acceptance_test->route.'@url',
-			function($f3) {
-				$acceptance_test = $f3->get('acceptance_test');
-				$acceptance_test->setDomain($f3->get('PARAMS.url'));
-				echo $acceptance_test->test();
-			}
-		);
 	}
 	$f3->set('tests_objects', $tests_objects);
 }
-
-$f3->route('GET /tests', 
+$f3->route('GET /tests',
 	function($f3) {
 		die(json_encode($f3->get('tests_objects')));
 	}
 );
+
+$f3->route('GET /@test/@url',
+	function($f3, $params) {
+		$acceptance_test = new $params['test']();
+		$acceptance_test->setDomain($f3->get('PARAMS.url'));
+		echo $acceptance_test->test();
+	}
+);
+
 
 $f3->run();
