@@ -62,9 +62,11 @@ $f3->route('GET /tests',
 
 $f3->route('GET /@test/@url',
 	function($f3, $params) {
-		$acceptance_test = new $params['test']();
-		$acceptance_test->setDomain($f3->get('PARAMS.url'));
-		echo $acceptance_test->test();
+		if (class_exists($params['test'])) {
+			$acceptance_test = new $params['test']();
+			$acceptance_test->setDomain($f3->get('PARAMS.url'));
+			echo $acceptance_test->test();
+		}
 	}
 );
 
