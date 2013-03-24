@@ -71,4 +71,11 @@ $f3->route('GET /@test/@url',
 );
 
 
+$f3->route('GET /junit/@url',
+	function($f3, $params) {
+		$junit = new JUnit($f3->get('tests_objects'), $f3->get('PARAMS.url'));
+		$junit->render();
+	}
+);
+
 $f3->run();
