@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: X-Requested-With');
 
 $f3 = require('lib/base.php');
 $f3->set('DEBUG', 3);
