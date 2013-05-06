@@ -4,6 +4,11 @@ $f3 = require('lib/base.php');
 $f3->set('DEBUG', 3);
 $f3->set('AUTOLOAD','classes/generic/;classes/tests/');
 
+define('SETUP_CFG', __DIR__ . '/setup.cfg');
+if (file_exists(SETUP_CFG)) {
+    $f3->config(SETUP_CFG);
+}
+
 function getDirectoryList($directory) {
 	$results = array();
 	$handler = opendir($directory);
