@@ -4,7 +4,7 @@ abstract class FileExistsTest extends AcceptanceTest {
 	public $file;
 
 	public function curl_request($file) {
-		$curl = curl_init($this->domain.$this->file);
+		$curl = curl_init($file);
 
 		//don't fetch the actual page, you only want to check the connection is ok
 		curl_setopt($curl, CURLOPT_NOBODY, true);
@@ -39,7 +39,7 @@ abstract class FileExistsTest extends AcceptanceTest {
 			if (is_array($this->file)) {
 				$ret_array = array();
 				foreach ($this->file as $file) {
-					$ret_array[] = curl_request($this->domain.$file);
+					$ret_array[] = $this->curl_request($this->domain.$file);
 				}
 				return in_array(true, $ret_array);
 			}
@@ -47,7 +47,7 @@ abstract class FileExistsTest extends AcceptanceTest {
 			  Single file test
 			  */
 			else {
-				return curl_request($this->domain.$this->file);
+				return $this->curl_request($this->domain.$this->file);
 			}
 		}
 		return false;
